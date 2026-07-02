@@ -1,0 +1,22 @@
+V20 — Compact Analysis Summary Tables
+
+Scope:
+- Keeps the original algorithms and 6-step pipeline unchanged.
+- Refines Step 6 / Analysis in Image, Text, Audio, and Video tabs.
+- Analysis remains table-based, but the displayed metrics are now curated to reduce clutter.
+
+Updated files:
+- panels.py
+- text_dna_unified_panel.py
+- audio_dna_tab.py
+- video_dna_tab.py
+
+Concept:
+- Same analysis concept across all data types:
+  Input / Payload -> DNA / Strand -> Error / Noise -> Recovery quality -> Original vs Recovered preview.
+- Metrics remain data-type-specific, but only key metrics are shown in the main summary.
+- Detailed artifacts such as full DNA, full strands, noisy strands, and detailed error/recovery tables remain available through preview/download/expanders where already implemented.
+
+Main change:
+- Image, Text, Audio, and Video analysis tables now use a compact metric filter.
+- Removed redundant details such as intermediate gains, raw technical rows, extra byte-level fields, full technical settings, and long per-domain internal metrics from the main Analysis summary.

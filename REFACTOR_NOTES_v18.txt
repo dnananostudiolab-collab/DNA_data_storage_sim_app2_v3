@@ -1,0 +1,36 @@
+V18 — Analysis tables refactor
+
+Goal:
+- Keep original algorithms and pipeline concept unchanged.
+- Change only Step 6 / Analysis presentation.
+- Replace metric-card style Analysis with table-based Analysis for Image, Text, Audio, and Video.
+
+Updated files:
+- panels.py
+- text_dna_unified_panel.py
+- audio_dna_tab.py
+- video_dna_tab.py
+
+Analysis layout now follows the same concept across all data types:
+1. Storage / Payload Summary
+2. DNA / Strand Summary
+3. Error / Noise Summary
+4. Recovery Quality Summary
+5. Original vs Recovered Preview
+
+Domain-specific metrics are kept:
+- Image: PSNR, SSIM, MAE, MSE, payload/byte accuracy, preview open status.
+- Text: word accuracy, word error rate, sequence similarity, token repair statistics.
+- Audio: playable status, SNR, PSNR, waveform correlation, spectrogram similarity.
+- Video: playable status, PSNR, SSIM, frame correlation, temporal repair/protection metrics.
+
+No algorithm changes:
+- Image algorithms remain in panels.py / robust_image_pipeline.py.
+- Text algorithms remain in text_dna_unified_panel.py and text sparse/semantic backend.
+- Audio algorithms remain in audio_dna_tab.py.
+- Video algorithms remain in video_dna_tab.py / video_dna_payload_codec.py.
+- Strand design still uses choose_auto_strand_design(), prepare_dna_strands(), and strand_rows_to_csv().
+- RINF_B16 remains table-based through dna_mapping.py.
+
+Validation:
+- Python compile check passed for app.py, panels.py, text_dna_unified_panel.py, audio_dna_tab.py, and video_dna_tab.py.

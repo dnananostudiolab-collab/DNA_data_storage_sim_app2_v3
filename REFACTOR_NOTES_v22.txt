@@ -1,0 +1,11 @@
+v22: aligned Text, Audio, and Video Step 6 Analysis with the Image-style render_panel_6_analysis structure.
+
+Core layout is now consistent across tabs:
+1. Storage / Payload Summary
+2. DNA / Strand Summary
+3. Error / Noise Report
+4. Recovery Quality Report
+5. Original vs Recovered Preview
+6. Method-specific details expander
+
+The fixed app-1-style metrics are preserved where applicable. Additional metrics are placed only where they support error reporting or recovery-quality reporting. Algorithms are unchanged.

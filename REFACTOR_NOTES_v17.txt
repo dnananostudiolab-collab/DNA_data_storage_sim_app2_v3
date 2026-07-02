@@ -1,0 +1,10 @@
+v17 UI consistency patch
+
+Changes:
+- Unified Step 3 DNA Encoding selector style: Mapping rule selectbox + Run DNA Encoding button.
+- Replaced Text tab radio buttons with selectbox.
+- Standardized Image/Audio/Video Step 3 label to Mapping rule.
+- Set .pipeline-status-spacer height to 10px in all breakpoints.
+- Removed Image/Text/Audio/Video DNA Storage domain titles.
+- Removed Same six-step workflow captions from Text/Audio/Video.
+- No algorithm changes. RINF_B16 remains TABLE mode through dna_mapping.mapping_to_config().

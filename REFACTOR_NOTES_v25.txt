@@ -1,0 +1,27 @@
+v25 — Analysis table naming cleanup
+
+Updated Step 6/Summarization across Image, Text, Audio, and Video to match the requested App 1-style final analysis layout.
+
+Changes:
+- Renamed analysis table titles:
+  - Storage / Payload Summary -> Compression analysis
+  - DNA / Strand Summary -> Encode-decode analysis
+  - Error / Noise Report -> Error Adding Report
+  - Recovery Quality Report unchanged
+- Removed the Section column from final analysis tables.
+- Final analysis tables now display only:
+  - Property
+  - Value
+- Method-specific details were normalized to Property / Value where applicable.
+- Kept the existing Summary preview row at the top:
+  - Original
+  - Compressed/Encoded
+  - Decoded
+- Removed no algorithmic changes. Compression, encoding, strand preparation, error simulation, and recovery logic are unchanged.
+
+Compile check passed for:
+- app.py
+- panels.py
+- text_dna_unified_panel.py
+- audio_dna_tab.py
+- video_dna_tab.py

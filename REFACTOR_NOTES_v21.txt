@@ -1,0 +1,41 @@
+v21 — Error and Recovery Report update
+
+Scope:
+- Updated Step 6 Analysis for Image, Text, Audio, and Video.
+- Kept existing app metrics and algorithms intact.
+- Standardized Analysis tables to Section | Metric | Value.
+- Reframed Error / Noise Summary as Error / Noise Report.
+- Reframed Recovery Quality Summary as Recovery Quality Report.
+
+Error / Noise Report now focuses only on error-addition reporting:
+- Error status
+- Error level
+- Error type
+- Substitution rate
+- Substituted bases
+- Error scope
+- Affected strands
+- Seed
+
+Recovery Quality Report now focuses on recovery usefulness:
+- Decode source
+- Decode status
+- Output status
+- Recovery class
+- Payload accuracy / checksum where available
+- Domain-specific recovery metrics
+
+Domain-specific recovery metrics:
+- Image: PSNR, SSIM, MAE, openable/output status
+- Text: exact match, character accuracy, word accuracy, sequence similarity, repaired/unrepaired tokens
+- Audio: playable status, SNR, waveform correlation, spectrogram similarity, duration difference, cleanup mode
+- Video: playable status, video PSNR/SSIM, frame correlation, duration difference, repair mode, visual protection
+
+Files changed:
+- panels.py
+- text_dna_unified_panel.py
+- audio_dna_tab.py
+- video_dna_tab.py
+
+Validation:
+- Python compile check passed for app.py and the four modified files.

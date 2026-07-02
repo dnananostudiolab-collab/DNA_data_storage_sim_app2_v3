@@ -1,0 +1,9 @@
+V19 — Text Decode Preview Fix
+
+Changes:
+- Added immediate Step 5 Decode / Repair preview for Text tab.
+- Step 5 now shows Decode / Repair Summary as a table instead of metric cards.
+- Step 5 now displays Decoded text and Final recovered/repaired text side by side.
+- Added download buttons for decoded text and final recovered text in Step 5.
+- Kept all original text encoding/decoding/repair algorithms unchanged.
+- Step 6 Analysis remains table-based from v18.

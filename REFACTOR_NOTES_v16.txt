@@ -1,0 +1,38 @@
+V16 preview + metrics fix
+=========================
+
+Goal
+----
+Keep the original algorithms and six-step concept pipeline unchanged, while fixing the UI distinction between:
+1. internal payload files used for DNA encoding,
+2. display preview artifacts used by Streamlit, and
+3. quality / validation metrics used for scientific evaluation.
+
+Main fixes
+----------
+- .imgpayload and .raw are treated as internal payload files, not previewable image containers.
+- Image Step 2 now displays the generated preview PNG from the original image algorithm instead of trying to preview .imgpayload.
+- Image Step 6 now uses storage_meta['preview_path'] / selected_pixel_preview_path for the compressed/encoded preview.
+- Method/payload metrics were restored for Image Step 2 and Image Step 6.
+- Image quality metrics are measured against the selected Step-1 pixel representation when available:
+  PSNR, SSIM, MAE, MSE.
+- Recovered image quality metrics are shown in Analysis after Decode.
+- Text, Audio, and Video original metrics remain in their native modules:
+  text_dna_unified_panel.py, audio_dna_tab.py, video_dna_tab.py.
+
+Important notes
+---------------
+- .imgpayload is an internal binary payload for DNA encoding. It is not PNG/JPEG/WebP and cannot be opened directly by Streamlit as an image.
+- The UI should show generated preview artifacts, usually PNG/video/audio outputs, not internal payload containers.
+- RINF_B16 remains TABLE mode through dna_mapping.mapping_to_config(). ALGO is not used for the main UI path.
+- Strand Design still uses the original functions:
+  choose_auto_strand_design(), prepare_dna_strands(), strand_rows_to_csv().
+
+Smoke checks performed
+----------------------
+- Python compile check passed for app.py, panels.py, ui_helpers.py, text/audio/video tab files, dna_mapping.py, dna_codec.py, robust_image_pipeline.py, fragments.py.
+- RINF_B16 confirmed as TABLE mode.
+- Simple image raw-pixel payload preview generated successfully.
+- Robust Low-Resolution image payload generated a PNG preview successfully.
+- RINF_B16 encode/decode round trip passed for a sample image payload.
+- Strand Design smoke test passed using FBR + index + payload + filler + RBR.

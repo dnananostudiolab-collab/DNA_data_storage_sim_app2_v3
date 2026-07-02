@@ -1,0 +1,29 @@
+DNA Data Storage System v15
+
+Scope
+- Original algorithms are preserved.
+- UI shell is cleaned and unified across Image, Text, Audio, and Video.
+- RINF_B16 remains TABLE mode through dna_mapping.mapping_to_config(). No ALGO mode is exposed or used by the app.
+- Strand design remains based on choose_auto_strand_design(), prepare_dna_strands(), and strand_rows_to_csv().
+
+UI cleanup
+- Removed patch/migration files and old change-log files from the final project package.
+- Replaced blue/green Streamlit st.info/st.success explanatory blocks with compact neutral notes at app runtime.
+- Removed the long hero explanation and domain explanatory notes from the main UI.
+- Sticky top pipeline status remains fixed during scroll.
+
+Preview behavior
+- Image previews use a frame-aware policy:
+  - If larger than the preview frame, the preview fits the container.
+  - If smaller than 25% of the preview frame, the preview is shown at 2x width.
+  - Medium images are shown at natural width up to the frame width.
+- Video/audio previews are styled to fit the available preview column, with video capped by max-height.
+
+Runtime checks performed in this environment
+- Python syntax compile check passed for app.py, ui_helpers.py, config.py, panels.py, text_dna_unified_panel.py, audio_dna_tab.py, video_dna_tab.py, dna_mapping.py, dna_codec.py, fragments.py, robust_image_pipeline.py, video payload modules, and supporting modules.
+- Core DNA encode/decode smoke test passed for Simple Mapping and RINF_B16.
+- RINF_B16 smoke test confirmed mode=TABLE.
+- Strand design smoke test confirmed original FBR + Strand index + Payload + Filler + RBR output structure.
+
+Note
+- Streamlit itself is not installed in this sandbox, so full browser runtime testing must be done locally with: streamlit run app.py
