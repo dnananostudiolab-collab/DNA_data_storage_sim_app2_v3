@@ -1938,13 +1938,14 @@ def render_panel_2_compression() -> None:
 
         with controls:
             st.markdown("#### 🗂️ Configuration Setup")
-            storage_mode = st.radio(
-                "Storage route",
-                [DATA_SOURCES["no_compression"], DATA_SOURCES["compression"]],
-                horizontal=True,
-                key="storage_mode",
-            )
-
+            # storage_mode = st.radio(
+            #     "Storage route",
+            #     [DATA_SOURCES["no_compression"], DATA_SOURCES["compression"]],
+            #     horizontal=True,
+            #     key="storage_mode",
+            # )
+            storage_mode = DATA_SOURCES["compression"]
+# st.caption("Compression mode is used by default.")
             if storage_mode == DATA_SOURCES["no_compression"]:
                 if st.button("Run no-compression pixel payload", key="use_no_compression", type="primary", use_container_width=True):
                     try:
