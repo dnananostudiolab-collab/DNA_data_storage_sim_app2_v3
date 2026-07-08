@@ -1242,13 +1242,15 @@ def render_text_dna_storage_panel() -> None:
         if not text.strip():
             st.warning("Upload or paste text first.")
 
-        storage_mode = st.radio(
-            "Storage mode",
-            ["No compression", "Compression"],
-            horizontal=True,
-            index=0 if st.session_state.get("text_storage_mode", "No compression") == "No compression" else 1,
-            key="text_storage_mode",
-        )
+        # storage_mode = st.radio(
+        #     "Storage mode",
+        #     ["No compression", "Compression"],
+        #     horizontal=True,
+        #     index=0 if st.session_state.get("text_storage_mode", "No compression") == "No compression" else 1,
+        #     key="text_storage_mode",
+        # )
+        storage_mode = "Compression"
+# st.caption("Compression mode is used by default.")
 
         if storage_mode == "No compression":
             method_key = "A_RAW_UTF8"
