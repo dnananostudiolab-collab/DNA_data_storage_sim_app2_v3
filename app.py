@@ -211,14 +211,15 @@ h1, h2, h3, h4 {{
   gap: 0.48rem;
 }}
 
+
 .pipeline-step {{
-  border: 1px solid var(--border);
+  border: 1px solid #D7DCE8;
   border-radius: 14px;
   padding: 0.55rem 0.62rem;
-  background: var(--surface-soft);
+  background: #FFFFFF;
   min-height: 58px;
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.045);
 }}
-
 .step-main {{
   display: flex;
   align-items: center;
@@ -235,15 +236,14 @@ h1, h2, h3, h4 {{
   justify-content: center;
   font-weight: 800;
   font-size: 0.78rem;
-  background: #D8E2EE;
-  color: var(--text);
+  background: #E5E7EB;
+  color: #374151;
   flex: 0 0 auto;
 }}
-
 .step-name {{
   font-weight: 760;
   font-size: 0.82rem;
-  color: var(--text);
+  color: #111827;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -253,7 +253,7 @@ h1, h2, h3, h4 {{
   margin-top: 0.32rem;
   font-size: 0.75rem;
   font-weight: 800;
-  color: var(--muted);
+  color: #6B7280;
 }}
 
 .pipeline-step.done {{
