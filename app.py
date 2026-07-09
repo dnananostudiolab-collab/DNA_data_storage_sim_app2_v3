@@ -130,25 +130,62 @@ def _step_state(step_no: int, domain: str) -> tuple[str, str]:
         return "current", "Next"
     return "waiting", "Waiting"
 
-
 def _render_global_style() -> None:
     st.markdown(
         f"""
 <style>
 /* build: {APP_BUILD_ID} */
+
+:root {{
+  --bg: #F6F8FB;
+  --surface: #FFFFFF;
+  --surface-soft: #EEF4F8;
+  --border: #D6E0EA;
+  --text: #102033;
+  --muted: #5F6F82;
+
+  --primary: #0B5CAD;
+  --primary-soft: #DCEEFF;
+  --primary-border: #8BC4FF;
+
+  --success: #0E9F6E;
+  --success-soft: #DDF7EE;
+  --success-border: #74D9B2;
+
+  --warning: #C27803;
+  --warning-soft: #FFF4D6;
+  --warning-border: #F6C453;
+
+  --danger: #D92D20;
+  --danger-soft: #FEE4E2;
+
+  --shadow: rgba(16, 32, 51, 0.12);
+}}
+
+.stApp {{
+  background: var(--bg);
+  color: var(--text);
+}}
+
 .block-container {{
   padding-top: 0.85rem;
   padding-bottom: 2.2rem;
   max-width: 1380px;
 }}
-h1, h2, h3, h4 {{ letter-spacing: -0.02em; }}
+
+h1, h2, h3, h4 {{
+  letter-spacing: -0.02em;
+  color: var(--text);
+}}
+
 .app-title {{
   font-size: 1.35rem;
   font-weight: 850;
   letter-spacing: -0.03em;
-  color: #0f172a;
+  color: var(--text);
   margin: 0.1rem 0 0.75rem 0;
 }}
+
 .pipeline-status-sticky {{
   position: fixed;
   top: 0.55rem;
@@ -158,88 +195,295 @@ h1, h2, h3, h4 {{ letter-spacing: -0.02em; }}
   z-index: 999999;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 18px;
   padding: 0.65rem;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.13);
+  box-shadow: 0 10px 28px var(--shadow);
 }}
-.pipeline-status-spacer {{ height: 10px; }}
+
+.pipeline-status-spacer {{
+  height: 10px;
+}}
+
 .pipeline-steps {{
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.48rem;
 }}
+
 .pipeline-step {{
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 14px;
   padding: 0.55rem 0.62rem;
-  background: #f8fafc;
+  background: var(--surface-soft);
   min-height: 58px;
 }}
-.step-main {{ display: flex; align-items: center; gap: 0.42rem; min-width: 0; }}
+
+.step-main {{
+  display: flex;
+  align-items: center;
+  gap: 0.42rem;
+  min-width: 0;
+}}
+
 .step-num {{
-  width: 23px; height: 23px; border-radius: 999px;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 0.78rem; background: #e2e8f0; color: #334155;
+  width: 23px;
+  height: 23px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.78rem;
+  background: #D8E2EE;
+  color: var(--text);
   flex: 0 0 auto;
 }}
+
 .step-name {{
-  font-weight: 760; font-size: 0.82rem; color: #0f172a;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-weight: 760;
+  font-size: 0.82rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }}
-.step-state {{ margin-top: 0.32rem; font-size: 0.75rem; font-weight: 800; color: #64748b; }}
-.pipeline-step.done {{ background: #ecfdf5; border-color: #86efac; }}
-.pipeline-step.done .step-num {{ background: #22c55e; color: white; }}
-.pipeline-step.done .step-state {{ color: #15803d; }}
-.pipeline-step.current {{ background: #eff6ff; border-color: #93c5fd; }}
-.pipeline-step.current .step-num {{ background: #2563eb; color: white; }}
-.pipeline-step.current .step-state {{ color: #1d4ed8; }}
-.pipeline-step.waiting {{ opacity: 0.82; }}
-.pipeline-step.review {{ background: #fff7ed; border-color: #fdba74; }}
-.pipeline-step.review .step-num {{ background: #f97316; color: white; }}
-.pipeline-step.review .step-state {{ color: #c2410c; }}
+
+.step-state {{
+  margin-top: 0.32rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--muted);
+}}
+
+.pipeline-step.done {{
+  background: var(--success-soft);
+  border-color: var(--success-border);
+}}
+
+.pipeline-step.done .step-num {{
+  background: var(--success);
+  color: white;
+}}
+
+.pipeline-step.done .step-state {{
+  color: #08785A;
+}}
+
+.pipeline-step.current {{
+  background: var(--primary-soft);
+  border-color: var(--primary-border);
+}}
+
+.pipeline-step.current .step-num {{
+  background: var(--primary);
+  color: white;
+}}
+
+.pipeline-step.current .step-state {{
+  color: var(--primary);
+}}
+
+.pipeline-step.waiting {{
+  opacity: 0.82;
+}}
+
+.pipeline-step.review {{
+  background: var(--warning-soft);
+  border-color: var(--warning-border);
+}}
+
+.pipeline-step.review .step-num {{
+  background: var(--warning);
+  color: white;
+}}
+
+.pipeline-step.review .step-state {{
+  color: #8A5A00;
+}}
+
 .compact-note {{
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 0.58rem 0.72rem;
-  color: #475569;
-  background: #f8fafc;
+  color: var(--muted);
+  background: var(--surface-soft);
   font-size: 0.88rem;
   margin: 0.35rem 0;
 }}
-.compact-note-done {{ color: #166534; background: #f7fef9; border-color: #dcfce7; }}
+
+.compact-note-done {{
+  color: #08785A;
+  background: var(--success-soft);
+  border-color: var(--success-border);
+}}
+
 div[data-testid="stMetric"] {{
-  border: 1px solid rgba(125, 125, 125, 0.14);
+  border: 1px solid var(--border);
   border-radius: 15px;
   padding: 0.62rem 0.72rem;
-  background: rgba(125, 125, 125, 0.035);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 4px 14px rgba(16, 32, 51, 0.035);
 }}
+
 [data-testid="stImage"] img {{
   max-width: 100%;
   max-height: 430px;
   object-fit: contain;
 }}
+
 [data-testid="stVideo"] video {{
   width: 100% !important;
   max-height: 430px !important;
   object-fit: contain;
   border-radius: 12px;
 }}
-[data-testid="stAudio"] audio {{ width: 100% !important; }}
-@media (max-width: 1100px) {{
-  .pipeline-status-sticky {{ width: calc(100vw - 2rem); }}
-  .pipeline-steps {{ grid-template-columns: repeat(3, minmax(0, 1fr)); }}
-  .pipeline-status-spacer {{ height: 10px; }}
+
+[data-testid="stAudio"] audio {{
+  width: 100% !important;
 }}
+
+@media (max-width: 1100px) {{
+  .pipeline-status-sticky {{
+    width: calc(100vw - 2rem);
+  }}
+
+  .pipeline-steps {{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }}
+
+  .pipeline-status-spacer {{
+    height: 10px;
+  }}
+}}
+
 @media (max-width: 700px) {{
-  .pipeline-status-sticky {{ width: calc(100vw - 1rem); top: 0.35rem; }}
-  .pipeline-steps {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
-  .pipeline-status-spacer {{ height: 10px; }}
+  .pipeline-status-sticky {{
+    width: calc(100vw - 1rem);
+    top: 0.35rem;
+  }}
+
+  .pipeline-steps {{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }}
+
+  .pipeline-status-spacer {{
+    height: 10px;
+  }}
 }}
 </style>
 """,
         unsafe_allow_html=True,
     )
+# def _render_global_style() -> None:
+#     st.markdown(
+#         f"""
+# <style>
+# /* build: {APP_BUILD_ID} */
+# .block-container {{
+#   padding-top: 0.85rem;
+#   padding-bottom: 2.2rem;
+#   max-width: 1380px;
+# }}
+# h1, h2, h3, h4 {{ letter-spacing: -0.02em; }}
+# .app-title {{
+#   font-size: 1.35rem;
+#   font-weight: 850;
+#   letter-spacing: -0.03em;
+#   color: #0f172a;
+#   margin: 0.1rem 0 0.75rem 0;
+# }}
+# .pipeline-status-sticky {{
+#   position: fixed;
+#   top: 0.55rem;
+#   left: 50%;
+#   transform: translateX(-50%);
+#   width: min(1320px, calc(100vw - 3rem));
+#   z-index: 999999;
+#   background: rgba(255, 255, 255, 0.97);
+#   backdrop-filter: blur(12px);
+#   border: 1px solid #e5e7eb;
+#   border-radius: 18px;
+#   padding: 0.65rem;
+#   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.13);
+# }}
+# .pipeline-status-spacer {{ height: 10px; }}
+# .pipeline-steps {{
+#   display: grid;
+#   grid-template-columns: repeat(6, minmax(0, 1fr));
+#   gap: 0.48rem;
+# }}
+# .pipeline-step {{
+#   border: 1px solid #e5e7eb;
+#   border-radius: 14px;
+#   padding: 0.55rem 0.62rem;
+#   background: #f8fafc;
+#   min-height: 58px;
+# }}
+# .step-main {{ display: flex; align-items: center; gap: 0.42rem; min-width: 0; }}
+# .step-num {{
+#   width: 23px; height: 23px; border-radius: 999px;
+#   display: inline-flex; align-items: center; justify-content: center;
+#   font-weight: 800; font-size: 0.78rem; background: #e2e8f0; color: #334155;
+#   flex: 0 0 auto;
+# }}
+# .step-name {{
+#   font-weight: 760; font-size: 0.82rem; color: #0f172a;
+#   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+# }}
+# .step-state {{ margin-top: 0.32rem; font-size: 0.75rem; font-weight: 800; color: #64748b; }}
+# .pipeline-step.done {{ background: #ecfdf5; border-color: #86efac; }}
+# .pipeline-step.done .step-num {{ background: #22c55e; color: white; }}
+# .pipeline-step.done .step-state {{ color: #15803d; }}
+# .pipeline-step.current {{ background: #eff6ff; border-color: #93c5fd; }}
+# .pipeline-step.current .step-num {{ background: #2563eb; color: white; }}
+# .pipeline-step.current .step-state {{ color: #1d4ed8; }}
+# .pipeline-step.waiting {{ opacity: 0.82; }}
+# .pipeline-step.review {{ background: #fff7ed; border-color: #fdba74; }}
+# .pipeline-step.review .step-num {{ background: #f97316; color: white; }}
+# .pipeline-step.review .step-state {{ color: #c2410c; }}
+# .compact-note {{
+#   border: 1px solid #e5e7eb;
+#   border-radius: 12px;
+#   padding: 0.58rem 0.72rem;
+#   color: #475569;
+#   background: #f8fafc;
+#   font-size: 0.88rem;
+#   margin: 0.35rem 0;
+# }}
+# .compact-note-done {{ color: #166534; background: #f7fef9; border-color: #dcfce7; }}
+# div[data-testid="stMetric"] {{
+#   border: 1px solid rgba(125, 125, 125, 0.14);
+#   border-radius: 15px;
+#   padding: 0.62rem 0.72rem;
+#   background: rgba(125, 125, 125, 0.035);
+# }}
+# [data-testid="stImage"] img {{
+#   max-width: 100%;
+#   max-height: 430px;
+#   object-fit: contain;
+# }}
+# [data-testid="stVideo"] video {{
+#   width: 100% !important;
+#   max-height: 430px !important;
+#   object-fit: contain;
+#   border-radius: 12px;
+# }}
+# [data-testid="stAudio"] audio {{ width: 100% !important; }}
+# @media (max-width: 1100px) {{
+#   .pipeline-status-sticky {{ width: calc(100vw - 2rem); }}
+#   .pipeline-steps {{ grid-template-columns: repeat(3, minmax(0, 1fr)); }}
+#   .pipeline-status-spacer {{ height: 10px; }}
+# }}
+# @media (max-width: 700px) {{
+#   .pipeline-status-sticky {{ width: calc(100vw - 1rem); top: 0.35rem; }}
+#   .pipeline-steps {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+#   .pipeline-status-spacer {{ height: 10px; }}
+# }}
+# </style>
+# """,
+#         unsafe_allow_html=True,
+#     )
 
 
 def _stepper_html(domain: str) -> str:
