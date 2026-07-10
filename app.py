@@ -24,11 +24,11 @@ APP_BUILD_ID = "v15_original_algorithms_clean_ui"
 
 APP_STEPS = [
     (1, "Input"),
-    (2, "Compression / Method"),
-    (3, "DNA Encoding"),
-    (4, "Strand / NGS"),
-    (5, "Decode / Repair"),
-    (6, "Analysis"),
+    (2, "Compression"),
+    (3, "Encoding"),
+    (4, "Strand Design"),
+    (5, "Decoding"),
+    (6, "Summarization"),
 ]
 
 DOMAIN_TABS = [
