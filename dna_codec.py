@@ -263,7 +263,7 @@ def encode_bits_to_dna(
     scheme_name: str="R1_B12",
     mode: str="TABLE",         # "SIMPLE", "TABLE" or "ALGO"
     seed: str="rn",
-    init_dimer: str="TT",
+    init_dimer: str="GC",
     prepend_one: bool=True,
     whiten: bool=True,
     target_gc: float=0.50,
@@ -311,7 +311,7 @@ def decode_dna_to_bits(
     scheme_name: str="R1_B12",
     mode: str="TABLE",
     seed: str="rn",
-    init_dimer: str="TT",
+    init_dimer: str="GC",
     remove_leading_one: bool=True,
     whiten: bool=True,
     target_gc: float=0.50,
